@@ -13,6 +13,15 @@ namespace BusBooking.Repositories.Interfaces
         Task<ServiceResponse> AddRoutes(AddRoutes addRoutes);
         Task<ServiceResponse> EditRoutes(EditRoutes editRoutes);
         Task<ServiceResponse> DeleteRoute(DeleteRoute deleteRoute);
+        Task<ServiceResponseData<List<AdminGetBuses>>> AdminGetBuses();
+        Task<ServiceResponse> AdminAddBuses(AdminAddOrEditBuses adminAddOrEditBuses );
+        Task<ServiceResponse> AdminEditBuses(AdminAddOrEditBuses adminAddOrEditBuses);
+        Task<ServiceResponseData<List<GetSeats>>> AdminGetSeats(ToGetSeats toGetSeats);
+        Task<ServiceResponse> AdminBlockOrUnSeats(AdminBlockOrUnSeats adminBlockOrUnSeats);
+
+
+
+
 
 
 

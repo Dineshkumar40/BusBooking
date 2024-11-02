@@ -189,6 +189,121 @@ namespace BusBooking.Repositories
             return response;
 
         }
+        public async Task<ServiceResponseData<List<AdminGetBuses>>> AdminGetBuses()
+        {
+            return await dapperSqlProvider.ExecuteProc<AdminGetBuses>("AdminGetBuses", null);
+
+        }
+        public async Task<ServiceResponse> AdminAddBuses(AdminAddOrEditBuses adminAddOrEditBuses)
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@busId", adminAddOrEditBuses.BusId);
+                dynamicParameters.Add("@busName", adminAddOrEditBuses.BusName);
+                dynamicParameters.Add("@busNumber", adminAddOrEditBuses.BusNumber);
+                dynamicParameters.Add("@busType", adminAddOrEditBuses.BusType);
+                dynamicParameters.Add("@totalSeats", adminAddOrEditBuses.TotalSeats);
+                dynamicParameters.Add("@departureTime", adminAddOrEditBuses.DepartureTime);
+                dynamicParameters.Add("@arrivalTime", adminAddOrEditBuses.ArrivalTime);
+                dynamicParameters.Add("@fare", adminAddOrEditBuses.Fare);
+                dynamicParameters.Add("@routeId", adminAddOrEditBuses.RouteId);
+                dynamicParameters.Add("@travelDays", adminAddOrEditBuses.TravelDays);
+                dynamicParameters.Add("@complementory", adminAddOrEditBuses.Complementory);
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("AddOrUpdateBusWithSeats", dynamicParameters);
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+
+        }
+        public async Task<ServiceResponse> AdminEditBuses(AdminAddOrEditBuses adminAddOrEditBuses)
+
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@busId", adminAddOrEditBuses.BusId);
+                dynamicParameters.Add("@busName", adminAddOrEditBuses.BusName);
+                dynamicParameters.Add("@busNumber", adminAddOrEditBuses.BusNumber);
+                dynamicParameters.Add("@busType", adminAddOrEditBuses.BusType);
+                dynamicParameters.Add("@totalSeats", adminAddOrEditBuses.TotalSeats);
+                dynamicParameters.Add("@departureTime", adminAddOrEditBuses.DepartureTime);
+                dynamicParameters.Add("@arrivalTime", adminAddOrEditBuses.ArrivalTime);
+                dynamicParameters.Add("@fare", adminAddOrEditBuses.Fare);
+                dynamicParameters.Add("@routeId", adminAddOrEditBuses.RouteId);
+                dynamicParameters.Add("@travelDays", adminAddOrEditBuses.TravelDays);
+                dynamicParameters.Add("@complementory", adminAddOrEditBuses.Complementory);
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("AddOrUpdateBusWithSeats", dynamicParameters);
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+
+        }
+        public async Task<ServiceResponseData<List<GetSeats>>> AdminGetSeats(ToGetSeats toGetSeats)
+        {
+            var response = new ServiceResponseData<List<GetSeats>>();
+
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@busID", toGetSeats.BusId);
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<GetSeats>("GetSeats", dynamicParameters);
+                response.Data = dbResponse.Data;
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+        }
+
+        public async Task<ServiceResponse> AdminBlockOrUnSeats(AdminBlockOrUnSeats adminBlockOrUnSeats)
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@busId", adminBlockOrUnSeats.BusId);
+                dynamicParameters.Add("@seatNumber", adminBlockOrUnSeats.SeatNumber);      
+              
+                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("BlockOrUnblock", dynamicParameters);
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+
+        }
+
+
+
+
 
 
 

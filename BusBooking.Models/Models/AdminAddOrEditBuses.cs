@@ -13,8 +13,8 @@ namespace BusBooking.Models.Models
         public string BusNumber { get; set; }
         public int TotalSeats { get; set; }
         public string BusType { get; set; }
-        public TimeSpan DepartureTime { get; set; }
-        public TimeSpan ArrivalTime { get; set; }
+        public string DepartureTime { get; set; }
+        public string ArrivalTime { get; set; }
         public int Fare { get; set; }
         public string RouteId { get; set; }
         public string Complementory { get; set; }

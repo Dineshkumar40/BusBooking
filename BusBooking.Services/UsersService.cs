@@ -49,6 +49,28 @@ namespace BusBooking.Services
         {
             return await usersRepository.DeleteRoute(deleteRoute);
         }
+        public async Task<ServiceResponseData<List<AdminGetBuses>>> AdminGetBuses()
+        {
+            return await usersRepository.AdminGetBuses();
+        }
+        public async Task<ServiceResponse> AdminAddBuses(AdminAddOrEditBuses adminAddOrEditBuses)
+        {
+            return await usersRepository.AdminAddBuses(adminAddOrEditBuses);
+        }
+        public async Task<ServiceResponse> AdminEditBuses(AdminAddOrEditBuses adminAddOrEditBuses)
+        {
+            return await usersRepository.AdminEditBuses(adminAddOrEditBuses);
+        }
+        public async Task<ServiceResponseData<List<GetSeats>>> AdminGetSeats(ToGetSeats toGetSeats)
+        {
+            return await usersRepository.AdminGetSeats(toGetSeats);
+        }
+        public async Task<ServiceResponse> AdminBlockOrUnSeats(AdminBlockOrUnSeats adminBlockOrUnSeats)
+        {
+            return await usersRepository.AdminBlockOrUnSeats(adminBlockOrUnSeats);
+        }
+
+
 
 
 

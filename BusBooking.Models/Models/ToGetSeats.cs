@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusBooking.Models.Models
 {
-    public class AdminBlockOrUnSeats
+    public class ToGetSeats
     {
-        public string BusId { get; set; }
-        public string SeatNumber { get; set; }
+        public String BusId { get; set; }
     }
 }
