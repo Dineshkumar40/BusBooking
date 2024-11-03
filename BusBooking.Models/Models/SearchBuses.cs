@@ -8,8 +8,11 @@ namespace BusBooking.Models.Models
 {
     public class SearchBuses
     {
-        public string From {  get; set; }
-        public string To { get; set; }
-        public DateTime TravelDate { get; set; }       
+        public string StartLocation {  get; set; }
+        public string EndLocation { get; set; }
+        public DateTime TravelDate { get; set; }     
+        public string BusTpye { get; set; }
+        public string DepartureTimeSlots { get; set; }
+        public string ArrivalTimeSlots { get; set; }
     }
 }

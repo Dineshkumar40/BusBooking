@@ -95,9 +95,12 @@ namespace BusBooking.Repositories
             try
             {
                 DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("@FromLocation", searchBuses.From);
-                dynamicParameters.Add("@ToLocation", searchBuses.To);
-                dynamicParameters.Add("@TravelDays", searchBuses.TravelDate.DayOfWeek.ToString());
+                dynamicParameters.Add("@fromLocation", searchBuses.StartLocation);
+                dynamicParameters.Add("@toLocation", searchBuses.EndLocation);
+                dynamicParameters.Add("@travelDays", searchBuses.TravelDate.DayOfWeek.ToString());
+                dynamicParameters.Add("@departureTimeSlots", searchBuses.DepartureTimeSlots);
+                dynamicParameters.Add("@arrivalTimeSlots",searchBuses.ArrivalTimeSlots);
+                dynamicParameters.Add("@busType", searchBuses.BusTpye);
 
                 var dbResponse = await dapperSqlProvider.ExecuteProc<UserGetBuses>("SearchBuses", dynamicParameters);
                 response.Data = dbResponse.Data;
