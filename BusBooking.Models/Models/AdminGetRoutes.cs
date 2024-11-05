@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BusBooking.Models.Models
 {
-    public class GetRoutes
+    public class AdminGetRoutes
     {
         public string RouteID {  get; set; }
         public string RouteName { get; set; }
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
-        public string Duration { get; set; }
+        public string TotalTime  { get; set; }
 
 
     }

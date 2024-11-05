@@ -9,7 +9,7 @@ namespace BusBooking.Repositories.Interfaces
         Task<ServiceResponse> UpdateUser(UpdateUserRequest updateUser);
         Task<ServiceResponse> DeleteUser(int id);
         Task<ServiceResponseData<List<UserGetBuses>>> SearchBuses(SearchBuses searchBuses);
-        Task<ServiceResponseData<List<GetRoutes>>> GetRoutes();
+        Task<ServiceResponseData<List<AdminGetRoutes>>> GetRoutes();
         Task<ServiceResponse> AddRoutes(AddRoutes addRoutes);
         Task<ServiceResponse> EditRoutes(EditRoutes editRoutes);
         Task<ServiceResponse> DeleteRoute(DeleteRoute deleteRoute);

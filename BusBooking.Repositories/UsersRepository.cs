@@ -97,10 +97,10 @@ namespace BusBooking.Repositories
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("@fromLocation", searchBuses.StartLocation);
                 dynamicParameters.Add("@toLocation", searchBuses.EndLocation);
-                dynamicParameters.Add("@travelDays", searchBuses.TravelDate.DayOfWeek.ToString());
+                dynamicParameters.Add("@travelDays", searchBuses.TravelDate.Value.DayOfWeek.ToString());
                 dynamicParameters.Add("@departureTimeSlots", searchBuses.DepartureTimeSlots);
                 dynamicParameters.Add("@arrivalTimeSlots",searchBuses.ArrivalTimeSlots);
-                dynamicParameters.Add("@busType", searchBuses.BusTpye);
+                dynamicParameters.Add("@busType", searchBuses.BusType);
 
                 var dbResponse = await dapperSqlProvider.ExecuteProc<UserGetBuses>("SearchBuses", dynamicParameters);
                 response.Data = dbResponse.Data;
@@ -114,9 +114,9 @@ namespace BusBooking.Repositories
             return response;
         }
         
-        public async Task<ServiceResponseData<List<GetRoutes>>> GetRoutes()
+        public async Task<ServiceResponseData<List<AdminGetRoutes>>> GetRoutes()
         {
-            return await dapperSqlProvider.ExecuteProc<GetRoutes>("GetAllRoutes", null);
+            return await dapperSqlProvider.ExecuteProc<AdminGetRoutes>("GetAllRoutes", null);
 
         }
 

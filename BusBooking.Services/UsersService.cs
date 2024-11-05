@@ -33,7 +33,7 @@ namespace BusBooking.Services
             return await usersRepository.SearchBuses(searchBuses);
         }
       
-       public async Task<ServiceResponseData<List<GetRoutes>>> GetRoutes()
+       public async Task<ServiceResponseData<List<AdminGetRoutes>>> GetRoutes()
         {
             return await usersRepository.GetRoutes();
         }

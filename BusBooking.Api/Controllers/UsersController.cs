@@ -80,6 +80,7 @@ namespace BusBooking.Api.Controllers
             var result = await usersService.DeleteRoute(deleteRoute);
             return result.ToActionResult();
         }
+
         [HttpGet]
         [Route("adminGetBuses")]
         public async Task<IActionResult> AdminGetBuses()
@@ -87,6 +88,7 @@ namespace BusBooking.Api.Controllers
             var result = await usersService.AdminGetBuses();
             return result.ToActionResult();
         }
+
         [HttpPost]
         [Route("addBuses")]
         public async Task<IActionResult>AdminAddBuses (AdminAddOrEditBuses adminAddOrEditBuses)
@@ -108,7 +110,7 @@ namespace BusBooking.Api.Controllers
             var result = await usersService.AdminBlockOrUnSeats(adminBlockOrUnSeats);
             return result.ToActionResult();
         }
-        [HttpGet]
+        [HttpPost]
         [Route("adminGetSeats")]
         public async Task<IActionResult> AdminGetSeats(ToGetSeats toGetSeats)
         {
