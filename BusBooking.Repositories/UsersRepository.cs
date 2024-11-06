@@ -1,6 +1,7 @@
 ﻿using BusBooking.Models.Models;
 using BusBooking.Repositories.Interfaces;
 using Dapper;
+using Newtonsoft.Json;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
@@ -295,6 +296,55 @@ namespace BusBooking.Repositories
                 response.Status = dbResponse.Status;
                 response.Messages = dbResponse.Messages;
 
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+
+
+        }
+        public async Task<ServiceResponse> BookingDetails(SendBookingDetails bookingDetails)
+
+            {
+                ServiceResponse response = new ServiceResponse();
+            try
+            {
+
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@busId", bookingDetails.UserId);
+                dynamicParameters.Add("@noOfSets", bookingDetails.NoOfSeats);
+                dynamicParameters.Add("@bookingId", Guid.NewGuid());//bookingid
+                dynamicParameters.Add("@month", bookingDetails.Month);
+                dynamicParameters.Add("busId", bookingDetails.BusId);
+                dynamicParameters.Add("@seatNumbers", bookingDetails.SeatNumbers);
+                dynamicParameters.Add("@passengerDetails", JsonConvert.SerializeObject(bookingDetails.PassengerInformation));
+
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("BookingDetails", dynamicParameters);
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+            }
+            catch (Exception ex)
+            {
+
+            }
+                return response;
+            }
+        public async Task<ServiceResponseData<List<GetBookingDetails>>> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails)
+        {
+            var response = new ServiceResponseData<List<GetBookingDetails>>();
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+
+                dynamicParameters.Add("@userId", userRequestToGetBookingDetails.UserId);
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<GetBookingDetails>("UserGetBookingDetails", dynamicParameters);
+                response.Data = dbResponse.Data;
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
             }
             catch (Exception ex)
             {

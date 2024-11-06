@@ -69,6 +69,15 @@ namespace BusBooking.Services
         {
             return await usersRepository.AdminBlockOrUnSeats(adminBlockOrUnSeats);
         }
+        public async Task<ServiceResponse> BookingDetails(SendBookingDetails bookingDetails)
+        {
+            return await usersRepository.BookingDetails(bookingDetails);
+        }
+        public async Task<ServiceResponseData<List<GetBookingDetails>>> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails)
+        {
+            return await usersRepository.GetBookingDetails(userRequestToGetBookingDetails);
+        }
+
 
 
 

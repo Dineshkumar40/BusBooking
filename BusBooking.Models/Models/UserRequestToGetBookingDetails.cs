@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusBooking.Models.Models
 {
-    public class BookingInfo
+    public class UserRequestToGetBookingDetails
     {
-        public string SeatNo { get; set; }
-        public string UserId { get; set; }         
-        public string UserName { get; set; }
+        public string UserId { get; set; }
     }
 }

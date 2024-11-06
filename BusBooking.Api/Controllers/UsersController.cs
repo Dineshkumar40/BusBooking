@@ -117,6 +117,20 @@ namespace BusBooking.Api.Controllers
             var result = await usersService.AdminGetSeats(toGetSeats);
             return result.ToActionResult();
         }
+        [HttpPost]
+        [Route("bookingDetails")]
+        public async Task<IActionResult> BookingDetails(SendBookingDetails bookingDetails)
+        {
+            var result = await usersService.BookingDetails(bookingDetails);
+            return result.ToActionResult();
+        }
+        [HttpPost]
+        [Route("userGetBookingDetails")]
+        public async Task<IActionResult> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails)
+        {
+            var result = await usersService.GetBookingDetails(userRequestToGetBookingDetails);
+            return result.ToActionResult();
+        }
 
 
 
