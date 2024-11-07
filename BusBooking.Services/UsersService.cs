@@ -77,6 +77,15 @@ namespace BusBooking.Services
         {
             return await usersRepository.GetBookingDetails(userRequestToGetBookingDetails);
         }
+        public async Task<ServiceResponse> ToAuth(ToAuth auth)
+        {
+            return await usersRepository.ToAuth(auth);
+        }
+        public async Task<ServiceResponseData<CheckAuth>> CheckAuth(ToAuth toAuth)
+        {
+            return await usersRepository.GetAuth(toAuth);
+        }
+        
 
 
 

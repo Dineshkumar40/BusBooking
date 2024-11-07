@@ -5,6 +5,7 @@ namespace BusBooking.Models.Models
    public enum  ServiceStatusType : sbyte
     {
         Success,
-        Failure
+        Failure,
+        UnAuthorized
     }
 }

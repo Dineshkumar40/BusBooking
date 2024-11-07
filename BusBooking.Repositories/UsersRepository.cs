@@ -317,7 +317,7 @@ namespace BusBooking.Repositories
                 dynamicParameters.Add("@noOfSets", bookingDetails.NoOfSeats);
                 dynamicParameters.Add("@bookingId", Guid.NewGuid());//bookingid
                 dynamicParameters.Add("@month", bookingDetails.Month);
-                dynamicParameters.Add("busId", bookingDetails.BusId);
+                dynamicParameters.Add("@busId", bookingDetails.BusId);
                 dynamicParameters.Add("@seatNumbers", bookingDetails.SeatNumbers);
                 dynamicParameters.Add("@passengerDetails", JsonConvert.SerializeObject(bookingDetails.PassengerInformation));
 
@@ -353,6 +353,57 @@ namespace BusBooking.Repositories
             return response;
 
         }
+        public async Task<ServiceResponse> ToAuth(ToAuth auth)
+        {
+            ServiceResponse response = new ServiceResponse();
+            try
+            {
+
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@userId", auth.UserId);
+                dynamicParameters.Add("@password", auth.Password);        
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("InsertAuthenticationRecord", dynamicParameters);
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+
+        }
+        public async Task<ServiceResponseData<CheckAuth>> GetAuth(ToAuth toAuth)
+        {
+            var response = new ServiceResponseData<CheckAuth>();
+
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@userId", toAuth.UserId);
+                dynamicParameters.Add("@password", toAuth.Password);
+
+                var dbresponse = await dapperSqlProvider.ExecuteProc<CheckAuth>("CheckAuth", dynamicParameters);
+                if (dbresponse.Data?.Any() == true)
+                {
+                    response.Status = ServiceStatusType.Success;
+                    response.Data = dbresponse.Data.FirstOrDefault();
+
+                }
+                else
+                {
+                    response.Status = ServiceStatusType.UnAuthorized;
+                }
+                response.Messages = dbresponse.Messages;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+        }
+
 
 
 

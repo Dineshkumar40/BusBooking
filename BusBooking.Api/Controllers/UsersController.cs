@@ -131,6 +131,20 @@ namespace BusBooking.Api.Controllers
             var result = await usersService.GetBookingDetails(userRequestToGetBookingDetails);
             return result.ToActionResult();
         }
+        [HttpPost]
+        [Route("toAuth")]
+        public async Task<IActionResult> ToAuth(ToAuth auth)
+        {
+            var result = await usersService.ToAuth(auth);
+            return result.ToActionResult();
+        }
+        [HttpPost]
+        [Route("CheckAuth")]
+        public async Task<IActionResult> CheckAuth(ToAuth auth)
+        {
+            var result = await usersService.CheckAuth(auth); 
+            return result.ToActionResult();
+        }
 
 
 

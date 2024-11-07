@@ -3,6 +3,7 @@ using BusBooking.Repositories.Interfaces;
 using Dapper;
 using System.Data.Common;
 using System.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BusBooking.Repositories
 {
@@ -32,6 +33,21 @@ namespace BusBooking.Repositories
                         Data = result.ToList(),
                     };
                 }
+            }
+            catch(SqlException ex)
+            {
+                response = new ServiceResponseData<List<T>>
+                {
+                    Status = ex.Number == 50000 ? ServiceStatusType.Failure : ServiceStatusType.Failure,
+                    Messages = new List<Message>
+                    {
+                        new Message()
+                        {
+                            Code = ex.Number == 50000 ? "50000" : "500",
+                            Description = ex.Message
+                        }
+                    }
+                };
             }
             catch (Exception ex)
             {

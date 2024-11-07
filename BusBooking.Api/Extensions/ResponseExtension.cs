@@ -19,7 +19,20 @@ namespace BusBooking.Api.Extensions
         private static IActionResult GetActionResult(ServiceResponse response)
         {
             var result = new ObjectResult(response);
-            result.StatusCode = StatusCodes.Status200OK;
+            switch (response.Status)
+            {
+                case ServiceStatusType.Success:
+                    result.StatusCode = StatusCodes.Status200OK;
+                    break;
+                case ServiceStatusType.UnAuthorized:
+                    result.StatusCode = StatusCodes.Status401Unauthorized;
+                    break;
+                case ServiceStatusType.Failure:
+                    result.StatusCode = StatusCodes.Status500InternalServerError ;
+                    break;
+
+
+            }
             return result;
         }
     }
