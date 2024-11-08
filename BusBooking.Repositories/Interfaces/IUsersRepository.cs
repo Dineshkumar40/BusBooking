@@ -20,8 +20,8 @@ namespace BusBooking.Repositories.Interfaces
         Task<ServiceResponse> AdminBlockOrUnSeats(AdminBlockOrUnSeats adminBlockOrUnSeats);
         Task<ServiceResponse> BookingDetails( SendBookingDetails bookingDetails);
         Task<ServiceResponseData<List<GetBookingDetails>>> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails);
+        Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookings);
         Task<ServiceResponse> ToAuth(ToAuth auth);
-
         Task<ServiceResponseData<CheckAuth>> GetAuth(ToAuth ToAuth);
 
     }

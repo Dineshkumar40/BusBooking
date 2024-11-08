@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusBooking.Models.Models
 {
-    public class CheckAuth
+    public class AdminRequestToGetBookingDetails
     {
-        public string UserId { get; set; }
-        public string RoleType { get; set; }
-        public string JwtToken { get; set; }    
+        public string BookingId { get; set; }   
     }
-    
 }

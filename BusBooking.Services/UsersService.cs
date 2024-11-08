@@ -2,11 +2,18 @@
 using BusBooking.Repositories;
 using BusBooking.Repositories.Interfaces;
 using BusBooking.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Xml.XPath;
 
 namespace BusBooking.Services
 {
+    [Authorize]
     public class UsersService(IUsersRepository usersRepository) : IUsersService
     {
         public async Task<ServiceResponseData<List<Users>>> GetUsers()
@@ -73,17 +80,13 @@ namespace BusBooking.Services
         {
             return await usersRepository.BookingDetails(bookingDetails);
         }
+        public async Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookings)
+        {
+            return await usersRepository.AdminGetBookingDetails(adminRequestToGetBookings);
+        }
         public async Task<ServiceResponseData<List<GetBookingDetails>>> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails)
         {
             return await usersRepository.GetBookingDetails(userRequestToGetBookingDetails);
-        }
-        public async Task<ServiceResponse> ToAuth(ToAuth auth)
-        {
-            return await usersRepository.ToAuth(auth);
-        }
-        public async Task<ServiceResponseData<CheckAuth>> CheckAuth(ToAuth toAuth)
-        {
-            return await usersRepository.GetAuth(toAuth);
         }
         
 

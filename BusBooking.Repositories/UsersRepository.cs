@@ -313,8 +313,8 @@ namespace BusBooking.Repositories
             {
 
                 DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("@busId", bookingDetails.UserId);
-                dynamicParameters.Add("@noOfSets", bookingDetails.NoOfSeats);
+                dynamicParameters.Add("@userId", bookingDetails.UserId);
+                dynamicParameters.Add("@noOfSeats", bookingDetails.NoOfSeats);
                 dynamicParameters.Add("@bookingId", Guid.NewGuid());//bookingid
                 dynamicParameters.Add("@month", bookingDetails.Month);
                 dynamicParameters.Add("@busId", bookingDetails.BusId);
@@ -322,7 +322,7 @@ namespace BusBooking.Repositories
                 dynamicParameters.Add("@passengerDetails", JsonConvert.SerializeObject(bookingDetails.PassengerInformation));
 
 
-                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("BookingDetails", dynamicParameters);
+                var dbResponse = await dapperSqlProvider.ExecuteProc<int>("BookingDetailsSp", dynamicParameters);
                 response.Status = dbResponse.Status;
                 response.Messages = dbResponse.Messages;
             }
@@ -353,6 +353,29 @@ namespace BusBooking.Repositories
             return response;
 
         }
+
+        public async Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookings)
+        {
+            var response = new ServiceResponseData<List<GetBookingDetails>>();
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+
+                dynamicParameters.Add("@bookingId", adminRequestToGetBookings.BookingId);
+
+                var dbResponse = await dapperSqlProvider.ExecuteProc<GetBookingDetails>("AdimnGetBookingDetails", dynamicParameters);
+                response.Data = dbResponse.Data;
+                response.Status = dbResponse.Status;
+                response.Messages = dbResponse.Messages;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return response;
+
+        }
+
         public async Task<ServiceResponse> ToAuth(ToAuth auth)
         {
             ServiceResponse response = new ServiceResponse();

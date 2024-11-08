@@ -1,10 +1,12 @@
 ﻿using BusBooking.Api.Extensions;
 using BusBooking.Models.Models;
 using BusBooking.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusBooking.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("user")]
     public class UsersController(IUsersService usersService) : ControllerBase
@@ -132,19 +134,13 @@ namespace BusBooking.Api.Controllers
             return result.ToActionResult();
         }
         [HttpPost]
-        [Route("toAuth")]
-        public async Task<IActionResult> ToAuth(ToAuth auth)
+        [Route("adminGetBookingDetails")]
+        public async Task<IActionResult> AdminBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookingDetails)
         {
-            var result = await usersService.ToAuth(auth);
+            var result = await usersService.AdminGetBookingDetails(adminRequestToGetBookingDetails);
             return result.ToActionResult();
         }
-        [HttpPost]
-        [Route("CheckAuth")]
-        public async Task<IActionResult> CheckAuth(ToAuth auth)
-        {
-            var result = await usersService.CheckAuth(auth); 
-            return result.ToActionResult();
-        }
+
 
 
 
