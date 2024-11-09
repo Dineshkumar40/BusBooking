@@ -354,25 +354,9 @@ namespace BusBooking.Repositories
 
         }
 
-        public async Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookings)
+        public async Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails()
         {
-            var response = new ServiceResponseData<List<GetBookingDetails>>();
-            try
-            {
-                DynamicParameters dynamicParameters = new DynamicParameters();
-
-                dynamicParameters.Add("@bookingId", adminRequestToGetBookings.BookingId);
-
-                var dbResponse = await dapperSqlProvider.ExecuteProc<GetBookingDetails>("AdimnGetBookingDetails", dynamicParameters);
-                response.Data = dbResponse.Data;
-                response.Status = dbResponse.Status;
-                response.Messages = dbResponse.Messages;
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return response;
+            return await dapperSqlProvider.ExecuteProc<GetBookingDetails>("AdimnGetBookingDetails", null);
 
         }
 

@@ -133,11 +133,11 @@ namespace BusBooking.Api.Controllers
             var result = await usersService.GetBookingDetails(userRequestToGetBookingDetails);
             return result.ToActionResult();
         }
-        [HttpPost]
+        [HttpGet]
         [Route("adminGetBookingDetails")]
-        public async Task<IActionResult> AdminBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookingDetails)
+        public async Task<IActionResult> AdminBookingDetails()
         {
-            var result = await usersService.AdminGetBookingDetails(adminRequestToGetBookingDetails);
+            var result = await usersService.AdminGetBookingDetails();
             return result.ToActionResult();
         }
 

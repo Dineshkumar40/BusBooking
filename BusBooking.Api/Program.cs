@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
      .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
      {
-         string JwtRsaPublicKey = "MIIBCgKCAQEA8m5lWBlWxwJMCt168RBPnwAe8oy702fANVwFSKOnGEMI+os5kbeQX8ulUY82euj4d2P2ngmeu5PK2NF7J5YWdXoDjXrbegQn3F0SV7K66HBFuyNDQwGIi8B2PWR3qIAVVZBuy0VrMSW5wxJpIt7WBW1CUleO/QgZ9vXbCRqz8U6407lORYuV1ca/BPjFd/iKTnO6mTtGonBBljEeKcBcSQyTWaJJny8xySapkxQt6UWdCHLeBZ+H2HyC+pUGbGLJaLz0/zdu+3z40puK5SfQtU1KVOehEzb82lTfISTBFmHQzx50nk0Fnt6n3kOqoHRqz9k0QfKfXCe4Pv8RttSIxQIDAQAB";
+         string JwtRsaPublicKey = "MIIBCgKCAQEA5nSzCdDYzVQULW9uRmLB5yNqgBk4xqfo4tMKE/a2Cbb2O1DWOfsHeWyoZLS+9LtwC85ZT7hRgJehgFZbhW6BK4w5SVu+PnEbxbZI0tNfT/WfxV9DanS2NoImJadc5H6fOloYtxQLKYaI+AiXDQXeC9Kg3JYBc/J1Z4YIouARi+psWmWkbsbFKF+v/K0Kb6ikDUtIVc8+JF44CRIdEZwNgKkZUrbp/tsF6sU+QivxaLVp+9cZYAb14evg7qT2eZpNOHr2tvxxqA/W1pudn+3xcrJND4NiFwVYATN7im9RX7pCIooGplUOIWGiA5OfoQX5OKamRVTF0bU+puxZr9b+YQIDAQAB";
          RSA rSA = RSA.Create();
          var publicKeyBytes = Convert.FromBase64String(JwtRsaPublicKey);
          rSA.ImportRSAPublicKey(publicKeyBytes, out int _);

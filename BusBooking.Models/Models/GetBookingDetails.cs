@@ -7,6 +7,7 @@ namespace BusBooking.Models.Models
         public string BusName { get; set; }
         public string Fare { get; set; }
         public string Month { get; set; }
+        public string UserId { get; set; }
         public string StartLocation { get; set; }
         public string EndLocation { get; set; }
         public string SeatNumbers { get; set; }

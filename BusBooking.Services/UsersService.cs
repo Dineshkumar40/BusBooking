@@ -80,9 +80,9 @@ namespace BusBooking.Services
         {
             return await usersRepository.BookingDetails(bookingDetails);
         }
-        public async Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookings)
+        public async Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails()
         {
-            return await usersRepository.AdminGetBookingDetails(adminRequestToGetBookings);
+            return await usersRepository.AdminGetBookingDetails();
         }
         public async Task<ServiceResponseData<List<GetBookingDetails>>> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails)
         {

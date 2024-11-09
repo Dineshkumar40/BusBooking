@@ -21,7 +21,7 @@ namespace BusBooking.Services.Interfaces
         Task<ServiceResponseData<List<GetSeats>>> AdminGetSeats(ToGetSeats toGetSeats);
         Task<ServiceResponse> AdminBlockOrUnSeats(AdminBlockOrUnSeats adminBlockOrUnSeats);
         Task<ServiceResponse> BookingDetails(SendBookingDetails bookingDetails);
-        Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails(AdminRequestToGetBookingDetails adminRequestToGetBookings);
+        Task<ServiceResponseData<List<GetBookingDetails>>> AdminGetBookingDetails();
 
         Task<ServiceResponseData<List<GetBookingDetails>>> GetBookingDetails(UserRequestToGetBookingDetails userRequestToGetBookingDetails);
 
